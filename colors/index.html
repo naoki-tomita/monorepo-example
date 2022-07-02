@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css" />
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <select></select>
+    <div id="colors" style="display: flex; border: #c9c9c9 solid 1px;"></div>
+  </div>
+  <script>
+    async function main() {
+      const response = await fetch('http://colormind.io/list/').then(it => it.json())
+      const options = response.result.map(it => {
+        const el = document.createElement("option");
+        el.innerText = it;
+        return el;
+      });
+      const select = document.querySelector('select');
+      async function renderColor() {
+        const colors = await fetch('http://colormind.io/api/', { method: "POST", body: JSON.stringify({ model: select.value }) }).then(it => it.json())
+        const el = document.querySelector('#colors');
+        el.innerHTML = "";
+        const colorElList = colors.result.map(([r, g, b]) => {
+          const el = document.createElement("div");
+          el.className = "color";
+          el.style.flex = 1;
+          el.style.height = "150px";
+          el.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+          return el;
+        });
+        el.append(...colorElList)
+      }
+      select.addEventListener("change", renderColor);
+      select.append(...options);
+      renderColor();
+    }
+    main();
+  </script>
+</body>
+</html>

@@ -5,5 +5,9 @@
   "license": "MIT",
   "devDependencies": {
     "vite": "^2.9.13"
+  },
+  "scripts": {
+    "build": "vite build .",
+    "dev": "vite dev ."
   }
 }

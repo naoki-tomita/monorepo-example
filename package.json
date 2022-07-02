@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "workspaces": [
+    "top",
+    "about",
+    "colors"
+  ],
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:top": "yarn workspace top dev",
+    "dev:about": "yarn workspace about dev",
+    "dev:colors": "yarn workspace colors dev",
+    "build": "node -r esbuild-register build.ts",
+    "build:top": "yarn workspace top build",
+    "build:about": "yarn workspace about build",
+    "build:colors": "yarn workspace colors build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.48",
+    "esbuild-register": "^3.3.3",
+    "npm-run-all": "^4.1.5",
+    "zx": "^7.0.6"
+  }
+}

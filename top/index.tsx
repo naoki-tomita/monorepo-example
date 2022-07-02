@@ -5,7 +5,8 @@ const App: FC = () => {
     <div>
       <h1>Top Page</h1>
       <p>This is monorepo example app.</p>
-      <p>goto <a href="./about">About</a> page</p>
+      <p>goto <a href="./about.html">About</a> page</p>
+      <p>goto <a href="./colors.html">Colors</a> page</p>
       <h2>repos ↓ this is Suspense component!</h2>
       <Repos />
     </div>
